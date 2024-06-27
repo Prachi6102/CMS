@@ -1,0 +1,27 @@
+<div class="container p-4 min-vh-100 card border-0">
+  <div class="d-flex justify-content-center mb-3">
+    <h4>Add Category</h4>
+  </div>
+  <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+    <div class="form-group mb-3">
+      <label for="category" class="form-label">Category : </label>
+      <select class="form-control" id="category" formControlName="category">
+        <option selected disabled>Select Category</option>
+        <option value="Fiction">Fiction</option>
+        <option value="Non-Fiction">Non-Fiction</option>
+      </select>
+    </div>
+    <div class="form-group mb-3">
+      <label for="subcategory" class="form-label">Sub Category : </label>
+      <input
+        type="text"
+        class="form-control"
+        id="subcategory"
+        formControlName="sub_category"
+      />
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,118 @@
+<div class="container my-3">
+  <h3>Add Book</h3>
+  <form id="addBookForm">
+    <div class="form-group mb-3">
+      <label for="title" class="form-label">Title:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="author" class="form-label">Author(s):</label>
+      <input
+        type="text"
+        class="form-control"
+        id="author"
+        name="author"
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="isbn" class="form-label">ISBN:</label>
+      <input type="text" class="form-control" id="isbn" name="isbn" required />
+    </div>
+    <div class="form-group mb-3">
+      <label for="publisher" class="form-label">Publisher:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="publisher"
+        name="publisher"
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="publicationDate" class="form-label">Publication Date:</label>
+      <input
+        type="date"
+        class="form-control"
+        id="publicationDate"
+        name="publicationDate"
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="pages" class="form-label">Pages:</label>
+      <input
+        type="number"
+        class="form-control"
+        id="pages"
+        name="pages"
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="language" class="form-label">Language:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="language"
+        name="language"
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="genre" class="form-label">Genre:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="genre"
+        name="genre"
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="description" class="form-label">Description:</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        rows="3"
+        required
+      ></textarea>
+    </div>
+    <div class="form-group mb-3">
+      <label for="edition" class="form-label">Edition:</label>
+      <input type="text" class="form-control" id="edition" name="edition" />
+    </div>
+    <div class="form-group mb-3">
+      <label for="price" class="form-label">Price:</label>
+      <input
+        type="number"
+        step="0.01"
+        class="form-control"
+        id="price"
+        name="price"
+      />
+    </div>
+    <div class="form-group mb-3">
+      <label for="availability" class="form-label">Availability:</label>
+      <select
+        class="form-control"
+        id="availability"
+        name="availability"
+        required
+      >
+        <option value="in stock">In Stock</option>
+        <option value="out of stock">Out of Stock</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-secondary btn-block container">
+      Add Book
+    </button>
+  </form>
+</div>

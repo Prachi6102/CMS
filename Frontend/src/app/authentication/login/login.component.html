@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card mt-5">
+                <div class="card-header text-center">
+                    <h3>Login to <span class="fw-bold text-primary">Kitaab Ghar</span></h3>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                        <div class="form-group mb-3">
+                            <label for="user-name" class="form-label">User Name : </label>
+                            <input type="text" id="user-name" class="form-control" formControlName="user_name"
+                                [ngClass]="{'is-invalid':loginForm.get('user_name')?.invalid&& (loginForm.get('user_name')?.touched||loginForm.get('user_name')?.dirty),'is-valid':loginForm.get('user_name')?.valid}">
+                            <small
+                                *ngIf="loginForm.get('user_name')?.touched && loginForm.get('user_name')?.errors?.['required']"
+                                class="text-danger">
+                                *required
+                            </small>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password" class="form-label">Password : </label>
+                            <input type="password" class="form-control" id="password" formControlName="password"
+                                [ngClass]="{'is-invalid':loginForm.get('password')?.invalid&& (loginForm.get('password')?.touched||loginForm.get('password')?.dirty),'is-valid':loginForm.get('password')?.valid}">
+                            <small
+                                *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']"
+                                class="text-danger">
+                                *required
+                            </small>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block container"
+                            [disabled]="!loginForm.valid">Login</button>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <small class="text-muted">Don't have an account? <a routerLink="/auth/signup">Sign up</a></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

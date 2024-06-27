@@ -1,0 +1,68 @@
+<div class="container-fluid position-fixed">
+  <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+      <li class="nav-item">
+        <a routerLink="/home" class="nav-link px-0 align-middle text-light">
+          <i class="fs-4 bi-house"></i>
+          <span class="ms-1 d-none d-sm-inline">Home</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-light">
+          <i class="fs-4 bi-speedometer2"></i>
+          <span class="ms-1 d-none d-sm-inline">Books</span>
+        </a>
+        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+          <li class="w-100">
+            <a routerLink="/books/books" class="nav-link ps-1 text-secondary">
+              <span class="d-none d-sm-inline">All</span>
+            </a>
+          </li>
+          <li class="w-100">
+            <a href="#" class="nav-link ps-1 text-secondary">
+              <span class="d-none d-sm-inline">Fiction</span>
+            </a>
+          </li>
+          <li class="w-100">
+            <a href="#" class="nav-link ps-1 text-secondary">
+              <span class="d-none d-sm-inline">Non-Fiction</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link px-0 align-middle text-light" routerLink="author/user/authors">
+          <i class="fs-4 bi-table"></i>
+          <span class="ms-1 d-none d-sm-inline">Authors</span></a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link px-0 align-middle text-light" routerLink="posts/feed">
+          <i class="fs-4 bi-table"></i>
+          <span class="ms-1 d-none d-sm-inline">Posts</span></a>
+      </li>
+      <li class="nav-item" *ngIf="role =='Admin'">
+        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-light">
+          <i class="fs-4 bi-bootstrap"></i>
+          <span class="ms-1 d-none d-sm-inline">Admin</span></a>
+        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+          <li class="w-100">
+            <a href="#" class="nav-link ps-1 text-secondary" routerLink="/user/users">
+              <span class="d-none d-sm-inline">Users</span></a>
+          </li>
+          <li>
+            <a href="#" class="nav-link ps-1 text-secondary" routerLink="/books/books">
+              <span class="d-none d-sm-inline">Books</span></a>
+          </li>
+          <li>
+            <a href="#" class="nav-link ps-1 text-secondary" routerLink="/author/authors">
+              <span class="d-none d-sm-inline">Authors</span></a>
+          </li>
+          <li>
+            <a href="#" class="nav-link ps-1 text-secondary" routerLink="/category/categories">
+              <span class="d-none d-sm-inline">Categories</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

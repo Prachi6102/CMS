@@ -1,0 +1,24 @@
+<div class="container my-5 min-vh-100">
+  <div class="row">
+    <div class="col-md-6 border border-4 rounded-4">
+      <div class="p-4">
+        <!-- User Full Name -->
+        <h3>{{currentUser.full_name}}</h3>
+
+        <!-- User Role -->
+        <p>{{currentUser.role}}</p>
+
+        <!-- User Details -->
+        <ul class="list-unstyled text-left">
+          <li class="mb-2"><strong>Username:</strong> {{currentUser.user_name}}</li>
+          <li class="mb-2"><strong>Email:</strong> {{currentUser.email}}</li>
+          <li class="mb-2"><strong>Gender:</strong> {{currentUser.gender}}</li>
+          <li class="mb-2"><strong>Date of Birth:</strong> {{currentUser.dob | date}}</li>
+          <li class="mb-2"><strong>Mobile No:</strong> {{currentUser.mobile_no}}</li>
+        </ul>
+        <!-- Action Button (Replace with actual action if needed) -->
+        <a href="#" class="btn btn-primary">Edit Profile</a>
+      </div>
+    </div>
+  </div>
+</div>

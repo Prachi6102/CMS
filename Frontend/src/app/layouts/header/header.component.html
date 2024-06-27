@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light fw-bold" href="#">Kitaab Ghar</a>
+    <div class="dropdown me-3">
+      <a href="#" class="d-flex align-items-center text-light text-decoration-none dropdown-toggle" id="dropdownUser1"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://github.com/mdo.png" alt="User Avatar" width="30" height="30" class="rounded-circle" />
+        <span class="d-none d-sm-inline mx-1">{{username}}</span>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-sm-end text-small shadow">
+        <li>
+          <a routerLink="/profile" class="dropdown-item">Profile</a>
+        </li>
+        <li>
+          <hr class="dropdown-divider" />
+        </li>
+        <li><a class="dropdown-item" (click)="signout()">Sign out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
