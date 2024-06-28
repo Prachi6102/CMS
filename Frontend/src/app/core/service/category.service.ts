@@ -17,7 +17,7 @@ export class CategoryService {
     });
   }
 
-  getCategories(): Observable<any> {
-    return this.http.get(`${this.url}/categories`, { withCredentials: true });
+  getCategories(category: string): Observable<any> {
+    return this.http.get(`${this.url}/${category}`, { withCredentials: true });
   }
 }

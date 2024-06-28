@@ -1,7 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import { IAuthor } from "../interface";
 
-const authorSchema: Schema<IAuthor> = new Schema(
+const authorSchema: Schema = new Schema(
   {
     full_name: {
       type: String,

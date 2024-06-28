@@ -2,18 +2,48 @@ import mongoose, { Schema } from "mongoose";
 
 const bookSchema: Schema = new Schema(
   {
-    title: { type: String, required: true },
-    author: { type: [String], required: true },
-    isbn: { type: String, required: true, unique: true },
-    publisher: { type: String, required: true },
-    publicationDate: { type: Date, required: true },
-    pages: { type: Number, required: true },
-    language: { type: String, required: true },
-    genre: { type: String, required: true },
-    description: { type: String, required: true },
-    edition: { type: String },
-    price: { type: Number },
-    availability: { type: String, enum: ["in stock", "out of stock"] },
+    title: {
+      type: String,
+      required: true,
+    },
+    author: {
+      type: String,
+      required: true,
+    },
+    isbn: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    pages: {
+      type: Number,
+      required: true,
+    },
+    language: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    sub_category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    cover_img: {
+      type: String,
+      required: true,
+    },
+    book_pdf: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

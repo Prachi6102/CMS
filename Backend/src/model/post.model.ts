@@ -1,17 +1,18 @@
 import mongoose, { Schema } from "mongoose";
-import { IPost } from "../interface";
 
-const postSchema: Schema<IPost> = new Schema(
+const postSchema: Schema = new Schema(
   {
     content: {
       type: String,
       required: true,
     },
     createdBy: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
     updatedBy: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
   },
   { timestamps: true }

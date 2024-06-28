@@ -1,4 +1,5 @@
 export interface IAuthor {
+  _id: string;
   full_name: string;
   email: string;
   dob: Date;

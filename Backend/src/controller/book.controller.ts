@@ -10,6 +10,14 @@ const addBook = async (
 ): Promise<void> => {
   try {
     const bookData = req.body;
+
+    const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+    const coverImageLocalPath = files?.cover_img?.[0]?.path;
+    const bookPDFLocalPath = files?.book_pdf?.[0]?.path;
+
+    bookData.cover_img = coverImageLocalPath;
+    bookData.book_pdf = bookPDFLocalPath;
+
     const newBook = await service.addBook(bookData);
     res.status(newBook.statusCode).json(newBook);
   } catch (error) {

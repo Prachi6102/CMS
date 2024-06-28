@@ -6,6 +6,7 @@ import { FeedComponent } from './feed/feed.component';
 const routes: Routes = [
   { path: 'add-post', component: AddPostComponent },
   { path: 'feed', component: FeedComponent },
+  { path: 'edit-post/:id', component: AddPostComponent },
 ];
 
 @NgModule({

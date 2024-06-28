@@ -7,4 +7,10 @@ router.post("/add", controller.addPost);
 
 router.get("/all-posts", controller.getAllPost);
 
+router.get("/:id", controller.getPostById);
+
+router.patch("/edit/:id", controller.updatePost);
+
+router.delete("/delete/:id", controller.deletePost);
+
 export default router;

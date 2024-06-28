@@ -1,118 +1,78 @@
-<div class="container my-3">
-  <h3>Add Book</h3>
-  <form id="addBookForm">
+<div class="container card border-0 min-vh-100 my-3">
+  <div class="d-flex justify-content-center">
+    <h4>Add Book</h4>
+  </div>
+  <form [formGroup]="bookForm" (ngSubmit)="addBook()">
     <div class="form-group mb-3">
       <label for="title" class="form-label">Title:</label>
-      <input
-        type="text"
-        class="form-control"
-        id="title"
-        name="title"
-        required
-      />
+      <input type="text" class="form-control" id="title" name="title" formControlName="title">
     </div>
+
     <div class="form-group mb-3">
-      <label for="author" class="form-label">Author(s):</label>
-      <input
-        type="text"
-        class="form-control"
-        id="author"
-        name="author"
-        required
-      />
-    </div>
-    <div class="form-group mb-3">
-      <label for="isbn" class="form-label">ISBN:</label>
-      <input type="text" class="form-control" id="isbn" name="isbn" required />
-    </div>
-    <div class="form-group mb-3">
-      <label for="publisher" class="form-label">Publisher:</label>
-      <input
-        type="text"
-        class="form-control"
-        id="publisher"
-        name="publisher"
-        required
-      />
-    </div>
-    <div class="form-group mb-3">
-      <label for="publicationDate" class="form-label">Publication Date:</label>
-      <input
-        type="date"
-        class="form-control"
-        id="publicationDate"
-        name="publicationDate"
-        required
-      />
-    </div>
-    <div class="form-group mb-3">
-      <label for="pages" class="form-label">Pages:</label>
-      <input
-        type="number"
-        class="form-control"
-        id="pages"
-        name="pages"
-        required
-      />
-    </div>
-    <div class="form-group mb-3">
-      <label for="language" class="form-label">Language:</label>
-      <input
-        type="text"
-        class="form-control"
-        id="language"
-        name="language"
-        required
-      />
-    </div>
-    <div class="form-group mb-3">
-      <label for="genre" class="form-label">Genre:</label>
-      <input
-        type="text"
-        class="form-control"
-        id="genre"
-        name="genre"
-        required
-      />
-    </div>
-    <div class="form-group mb-3">
-      <label for="description" class="form-label">Description:</label>
-      <textarea
-        class="form-control"
-        id="description"
-        name="description"
-        rows="3"
-        required
-      ></textarea>
-    </div>
-    <div class="form-group mb-3">
-      <label for="edition" class="form-label">Edition:</label>
-      <input type="text" class="form-control" id="edition" name="edition" />
-    </div>
-    <div class="form-group mb-3">
-      <label for="price" class="form-label">Price:</label>
-      <input
-        type="number"
-        step="0.01"
-        class="form-control"
-        id="price"
-        name="price"
-      />
-    </div>
-    <div class="form-group mb-3">
-      <label for="availability" class="form-label">Availability:</label>
-      <select
-        class="form-control"
-        id="availability"
-        name="availability"
-        required
-      >
-        <option value="in stock">In Stock</option>
-        <option value="out of stock">Out of Stock</option>
+      <label for="author" class="form-label">Author:</label>
+      <select class="form-control" id="author" name="author" formControlName="author">
+        <option selected disabled>Select</option>
+        <option *ngFor="let author of authors" [value]="author._id">{{ author.full_name
+          }}</option>
       </select>
     </div>
-    <button type="submit" class="btn btn-secondary btn-block container">
-      Add Book
-    </button>
+
+    <div class="form-group mb-3">
+      <label for="isbn" class="form-label">ISBN:</label>
+      <input type="text" class="form-control" id="isbn" name="isbn" formControlName="isbn">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="pages" class="form-label">Pages:</label>
+      <input type="number" class="form-control" id="pages" name="pages" formControlName="pages">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="language" class="form-label">Language:</label>
+      <input type="text" class="form-control" id="language" name="language" formControlName="language">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="category" class="form-label">Category:</label>
+      <select class="form-control" id="category" name="category" [(ngModel)]="selectedCategory"
+        (change)="onCategoryChange()" formControlName="category">
+        <option selected disabled>Select</option>
+        <option value="Fiction">Fiction</option>
+        <option value="Non-Fiction">Non-Fiction</option>
+      </select>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="sub-category" class="form-label">Sub Category:</label>
+      <select class="form-control" id="sub-category" name="sub-category" formControlName="sub_category">
+        <option selected disabled>Select</option>
+        <option *ngFor="let category of filteredSubCategories" [value]="category._id">{{category.sub_category
+          }}</option>
+      </select>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="description" class="form-label">Description:</label>
+      <textarea class="form-control" id="description" name="description" rows="3"
+        formControlName="description"></textarea>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="coverImage" class="form-label">Cover Image : </label>
+      <input type="file" class="form-control" id="coverImage" (change)="onCoverImageChange($event)"
+        formControlName="cover_img">
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="bookFile" class="form-label">Book PDF : </label>
+      <input type="file" class="form-control" id="bookFile" (change)="onBookPDFChange($event)"
+        formControlName="book_pdf">
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary">
+        Add Book
+      </button>
+    </div>
   </form>
 </div>

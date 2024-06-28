@@ -6,6 +6,6 @@ const router: Router = express.Router();
 
 router.post("/add", authorize(["Admin"]), controller.addCategory);
 
-router.get("/categories", controller.getAllCategories);
+router.get("/:category", controller.getCategories);
 
 export default router;

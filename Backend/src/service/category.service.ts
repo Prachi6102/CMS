@@ -25,8 +25,14 @@ export class CategoryService {
     );
   }
 
-  async getCategories() {
-    const categories: ICategory[] | null = await Category.find();
+  async getCategories(category: string) {
+    const categories: ICategory[] | null = await Category.aggregate([
+      {
+        $match: {
+          category: category,
+        },
+      },
+    ]);
     if (!categories) {
       throw new ApiError(
         CODES.CLIENT_ERROR.NOT_FOUND,

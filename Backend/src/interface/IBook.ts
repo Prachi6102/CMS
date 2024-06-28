@@ -2,15 +2,13 @@ import { Document } from "mongoose";
 
 export interface IBook extends Document {
   title: string;
-  author: string | string[];
+  author: string;
   isbn: string;
-  publisher: string;
-  publicationDate: Date;
   pages: number;
   language: string;
-  genre: string;
+  category: string;
+  sub_category: string;
   description: string;
-  edition?: string;
-  price?: number;
-  availability?: "in stock" | "out of stock";
+  cover_img: string;
+  book_pdf: string;
 }

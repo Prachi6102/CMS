@@ -1,4 +1,5 @@
 import { CODES, MESSAGES } from "../constants";
+import { deletePost } from "../controller/post.controller";
 import { IPost } from "../interface";
 import { Post } from "../model";
 import { ApiResponse, ApiError } from "../utils";
@@ -41,7 +42,6 @@ export class PostService {
         },
       },
     ]);
-    console.log(posts);
     if (!posts) {
       throw new ApiError(
         CODES.CLIENT_ERROR.NOT_FOUND,
@@ -57,5 +57,53 @@ export class PostService {
     }
 
     return new ApiResponse(CODES.SUCCESS.OK, "", posts);
+  }
+
+  async getPostById(id: string) {
+    const post: IPost | null = await Post.findById(id);
+    if (!post) {
+      throw new ApiError(
+        CODES.CLIENT_ERROR.NOT_FOUND,
+        MESSAGES.ERROR_MSG.NOT_FOUND("Post")
+      );
+    }
+    return new ApiResponse(CODES.SUCCESS.OK, "", post);
+  }
+
+  async updatePost(id: string, content: IPost) {
+    const updatedPost: IPost | null = await Post.findByIdAndUpdate(
+      id,
+      content,
+      { new: true }
+    );
+
+    if (!updatedPost) {
+      throw new ApiError(
+        CODES.CLIENT_ERROR.NOT_FOUND,
+        MESSAGES.ERROR_MSG.NOT_FOUND("Post")
+      );
+    }
+
+    return new ApiResponse(
+      CODES.SUCCESS.OK,
+      MESSAGES.SUCCESS_MSG.UPDATE("Post"),
+      updatedPost
+    );
+  }
+
+  async deletePost(id: string) {
+    const deletedPost: IPost | null = await Post.findByIdAndDelete(id);
+    if (!deletedPost) {
+      throw new ApiError(
+        CODES.CLIENT_ERROR.NOT_FOUND,
+        MESSAGES.ERROR_MSG.NOT_FOUND("Post")
+      );
+    }
+
+    return new ApiResponse(
+      CODES.SUCCESS.OK,
+      MESSAGES.SUCCESS_MSG.DELETE("Post"),
+      deletedPost
+    );
   }
 }

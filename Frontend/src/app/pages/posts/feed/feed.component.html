@@ -3,8 +3,15 @@
         <a class="btn btn-primary" routerLink="/posts/add-post">Add Post</a>
     </div>
     <div *ngIf="allPosts && allPosts.length; else noPosts">
-        <div *ngFor="let post of allPosts">
-            <h4 class="mb-3">{{post.uname}}</h4>
+        <div *ngFor="let post of allPosts" class="mb-3">
+            <div class="d-flex justify-content-between">
+                <h4 class="mb-3">{{post.uname}}</h4>
+                <div>
+                    <button type="button" class="btn" (click)="onEdit(post._id)"><i class="fa-solid fa-pen"></i></button>
+                    <button type="button" class="btn" (click)="onDelete(post._id)"><i
+                            class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
             <div class="card shadow-sm rounded-3 p-4">
                 <div [innerHTML]="post.content"></div>
             </div>

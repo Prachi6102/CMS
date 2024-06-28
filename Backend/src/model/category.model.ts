@@ -1,7 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import { ICategory } from "../interface";
 
-const categorySchema: Schema<ICategory> = new Schema(
+const categorySchema: Schema = new Schema(
   {
     category: {
       type: String,

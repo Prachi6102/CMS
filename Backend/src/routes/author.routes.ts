@@ -1,7 +1,6 @@
 import * as controller from "../controller/author.controller";
 import express, { Router } from "express";
-import { upload } from "../middleware";
-import { authorize } from "../middleware/auth";
+import { upload, authorize } from "../middleware";
 
 const router: Router = express.Router();
 

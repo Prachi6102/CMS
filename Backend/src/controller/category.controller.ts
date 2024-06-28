@@ -22,17 +22,18 @@ const addCategory = async (
   }
 };
 
-const getAllCategories = async (
+const getCategories = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const categories = await service.getCategories();
+    const category = req.params.category;
+    const categories = await service.getCategories(category);
     res.status(categories.statusCode).json(categories);
   } catch (error: any) {
     next(error);
   }
 };
 
-export { addCategory, getAllCategories };
+export { addCategory, getCategories };

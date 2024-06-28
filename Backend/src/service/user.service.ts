@@ -53,10 +53,9 @@ export class UserService {
       );
     }
 
-    const user_id = user._id as string;
     let token;
     tokenUtil
-      .generateAccessToken(user_id, user.user_name, user.role)
+      .generateAccessToken(user.id, user.user_name, user.role)
       .then((tkn) => {
         token = tkn;
       })
@@ -68,7 +67,7 @@ export class UserService {
         );
       });
 
-    const loggedInUser = await User.findById(user_id).select("-password");
+    const loggedInUser = await User.findById(user.id).select("-password");
 
     return new ApiResponse(CODES.SUCCESS.OK, MESSAGES.SUCCESS_MSG.LOGIN, {
       loggedInUser,

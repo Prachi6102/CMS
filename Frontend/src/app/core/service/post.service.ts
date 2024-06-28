@@ -20,6 +20,20 @@ export class PostService {
   getAllPost(): Observable<any> {
     return this.http.get(`${this.url}/all-posts`, { withCredentials: true });
   }
+
+  getPostById(id: string): Observable<any> {
+    return this.http.get(`${this.url}/${id}`, { withCredentials: true });
+  }
+
+  updatePost(id: string, content: IContent): Observable<any> {
+    return this.http.patch(`${this.url}/edit/${id}`, content, {
+      withCredentials: true,
+    });
+  }
+
+  delete(id: string): Observable<any> {
+    return this.http.delete(`${this.url}/delete/${id}`, {
+      withCredentials: true,
+    });
+  }
 }
-
-

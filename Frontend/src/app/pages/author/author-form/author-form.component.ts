@@ -100,7 +100,6 @@ export class AuthorFormComponent implements OnInit {
   }
 
   getAuthorById() {
-    console.log('in get');
     this.authorService.getById(this.author_id).subscribe({
       next: (response) => {
         const dob = new Date(response.data.dob);
