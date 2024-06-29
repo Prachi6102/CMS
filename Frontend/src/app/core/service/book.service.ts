@@ -15,4 +15,8 @@ export class BookService {
       withCredentials: true,
     });
   }
+
+  getAll(): Observable<any> {
+    return this.http.get(`${this.url}/books`, { withCredentials: true });
+  }
 }

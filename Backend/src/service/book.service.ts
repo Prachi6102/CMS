@@ -19,4 +19,23 @@ export class BookService {
       newBook
     );
   }
+
+  async getAllBooks() {
+    const books: IBook[] | null = await Book.find();
+    if (!books) {
+      throw new ApiError(
+        CODES.CLIENT_ERROR.NOT_FOUND,
+        MESSAGES.ERROR_MSG.NOT_FOUND("Books")
+      );
+    }
+
+    if (books.length == 0) {
+      throw new ApiError(
+        CODES.SUCCESS.NO_CONTENT,
+        MESSAGES.ERROR_MSG.NO_CONTENT("Book")
+      );
+    }
+
+    return new ApiResponse(CODES.SUCCESS.OK, "", books);
+  }
 }

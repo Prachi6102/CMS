@@ -25,4 +25,17 @@ const addBook = async (
   }
 };
 
-export { addBook };
+const getAllBooks = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const books = await service.getAllBooks();
+    res.status(books.statusCode).json(books);
+  } catch (error: any) {
+    next(error);
+  }
+};
+
+export { addBook  , getAllBooks};

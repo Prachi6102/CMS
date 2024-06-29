@@ -20,4 +20,6 @@ router.post(
   controller.addBook
 );
 
+router.get("/books", controller.getAllBooks);
+
 export default router;
