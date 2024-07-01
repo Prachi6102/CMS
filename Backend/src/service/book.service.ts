@@ -21,7 +21,52 @@ export class BookService {
   }
 
   async getAllBooks() {
-    const books: IBook[] | null = await Book.find();
+    const books: IBook[] | null = await Book.aggregate([
+      {
+        $lookup: {
+          from: "authors",
+          localField: "author",
+          foreignField: "_id",
+          as: "author_obj",
+        },
+      },
+      {
+        $unwind: {
+          path: "$author_obj",
+        },
+      },
+      {
+        $addFields: {
+          author_name: "$author_obj.full_name",
+        },
+      },
+      {
+        $lookup: {
+          from: "categories",
+          localField: "sub_category",
+          foreignField: "_id",
+          as: "category_obj",
+        },
+      },
+      {
+        $unwind: {
+          path: "$category_obj",
+        },
+      },
+      {
+        $addFields: {
+          sub_category_name: "$category_obj.sub_category",
+        },
+      },
+      {
+        $project: {
+          category_obj: 0,
+          sub_category: 0,
+          author: 0,
+          author_obj: 0,
+        },
+      },
+    ]);
     if (!books) {
       throw new ApiError(
         CODES.CLIENT_ERROR.NOT_FOUND,

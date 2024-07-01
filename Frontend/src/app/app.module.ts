@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
 import { HeaderInterceptor } from './core/interceptors/header.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
     LayoutsModule,
     NgbModule,
     HttpClientModule,
+    SharedModule,
   ],
   providers: [
     CookieService,

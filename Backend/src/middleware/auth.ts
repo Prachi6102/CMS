@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from "express";
 import { userToken } from "../interface";
 import { CODES, MESSAGES } from "../constants";
 import { ApiError, TokenUtil } from "../utils";
-import { JwtPayload } from "jsonwebtoken";
 
 const tokenObj = new TokenUtil();
 

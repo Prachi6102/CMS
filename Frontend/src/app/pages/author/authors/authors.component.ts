@@ -4,6 +4,7 @@ import { ColDef } from 'ag-grid-community';
 import { IAuthor } from 'src/app/core/interface';
 import { AuthorService } from 'src/app/core/service/author.service';
 import { ButtonCellRendererComponent } from 'src/app/shared/cell-renderer/button-cell-renderer/button-cell-renderer.component';
+import { ProfilePicComponent } from 'src/app/shared/cell-renderer/profile-pic/profile-pic.component';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -32,12 +33,23 @@ export class AuthorsComponent implements OnInit {
   }
 
   colDefs: ColDef[] = [
-    { field: 'full_name', headerName: 'NAME' },
-    { field: 'email', headerName: 'EMAIL' },
-    { field: 'dob', headerName: 'DATE OF BIRTH' },
-    { field: 'country', headerName: 'COUNTRY' },
-    { field: 'biography', headerName: 'BIO' },
-    { field: 'profile_pic', headerName: 'PROFILE_PIC' },
+    {
+      field: 'full_name',
+      headerName: 'NAME',
+      cellRenderer: ProfilePicComponent,
+      flex: 1,
+    },
+    { field: 'email', headerName: 'EMAIL', flex: 1 },
+    {
+      field: 'dob',
+      headerName: 'DATE OF BIRTH',
+      cellRenderer: (data: any) => {
+        return data.value ? new Date(data.value).toLocaleDateString() : '';
+      },
+      flex: 1,
+    },
+    { field: 'country', headerName: 'COUNTRY', flex: 1 },
+    { field: 'biography', headerName: 'BIO', flex: 2 },
     {
       headerName: 'Actions',
       field: 'actions',
@@ -46,6 +58,7 @@ export class AuthorsComponent implements OnInit {
         onDelete: (id: string) => this.deleteAuthor(id),
         onUpdate: (id: string) => this.updateAuthor(id),
       },
+      flex: 1,
     },
   ];
 

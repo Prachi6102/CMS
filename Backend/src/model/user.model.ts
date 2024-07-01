@@ -1,5 +1,28 @@
 import mongoose, { Schema } from "mongoose";
 
+const addressSchema: Schema = new Schema({
+  contry: {
+    type: String,
+    required: true,
+  },
+  state: {
+    type: String,
+    required: true,
+  },
+  city: {
+    type: String,
+    required: true,
+  },
+  street: {
+    type: String,
+    required: true,
+  },
+  zipcode: {
+    type: String,
+    required: true,
+  },
+});
+
 const userSchema: Schema = new Schema(
   {
     user_name: {
@@ -21,6 +44,10 @@ const userSchema: Schema = new Schema(
       required: true,
       enum: ["Male", "Female", "Other"],
     },
+    hobbies: {
+      type: [String],
+      required: true,
+    },
     dob: {
       type: Date,
       required: true,
@@ -36,6 +63,14 @@ const userSchema: Schema = new Schema(
     password: {
       type: String,
       required: true,
+    },
+    addresses: {
+      type: [addressSchema],
+      required: true,
+    },
+    profile_pic: {
+      type: String,
+      default: "..\\Backend\\public\\images\\profile_pic_default.jpg",
     },
   },
   { timestamps: true }

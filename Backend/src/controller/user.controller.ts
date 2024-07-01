@@ -10,6 +10,12 @@ const register = async (
 ): Promise<void> => {
   try {
     const userData = req.body;
+
+    const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+    const profilePicLocalPath = files?.profile_pic?.[0]?.path;
+
+    userData.profile_pic = profilePicLocalPath;
+
     const newUser = await service.register(userData);
     res.status(newUser.statusCode).json(newUser);
   } catch (error: any) {

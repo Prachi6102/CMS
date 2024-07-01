@@ -87,6 +87,18 @@
                             </div>
                         </div>
 
+                        <!-- hobbies -->
+                        <div class="mb-3" formArrayName="hobbies">
+                            <label class="form-label ms-1 me-3">Hobbies<span
+                                    *ngIf="registrationForm.get('hobbies')?.errors?.['required']"
+                                    class="text-danger fw-bold">*</span> : </label>
+                            <div *ngFor="let hobby of hobbiesList; let i = index" class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" [id]="'hobby' + i" [value]="hobby"
+                                    (change)="onHobbyChange($event)">
+                                <label class="form-check-label" [for]="'hobby' + i">{{ hobby }}</label>
+                            </div>
+                        </div>
+
                         <!-- date of birth -->
                         <div class="form-group mb-3">
                             <label for="dob" class="form-label">Date of birth<span
@@ -119,6 +131,70 @@
                             <small *ngIf="registrationForm.get('email')?.errors?.['pattern']" class="text-danger">
                                 Please enter a valid email address.
                             </small>
+                        </div>
+
+                        <!-- addresses -->
+                        <div formArrayName="addresses" >
+                            <div *ngFor="let add of addressList.controls; let i = index">
+                                <div [formGroupName]="i">
+                                    <label class="form-label">Address {{i + 1}} : </label>
+                                    <div class="mb-3 form-control">
+                                        <!-- street -->
+                                        <div class="m-3">
+                                            <label for="street" class="form-label">Street<span
+                                                    *ngIf="hasError(i, 'street', 'required')"
+                                                    class="text-danger fw-bold">*</span>
+                                                :
+                                            </label>
+                                            <textarea id="street" formControlName="street"
+                                                class="form-control"></textarea>
+                                        </div>
+                                        <div class="row m-3 p-0">
+                                            <!-- city -->
+                                            <div class="mb-2 ps-0 col-4">
+                                                <label for="city" class="form-label">City<span
+                                                        *ngIf="hasError(i, 'city', 'required')"
+                                                        class="text-danger fw-bold">*</span>
+                                                    :
+                                                </label>
+                                                <input type="text" id="city" formControlName="city"
+                                                    class="form-control" />
+                                            </div>
+                                            <!-- state -->
+                                            <div class=" mb-2 col-4">
+                                                <label for="state" class="form-label">State<span
+                                                        *ngIf="hasError(i, 'state', 'required')"
+                                                        class="text-danger fw-bold">*</span>
+                                                    :
+                                                </label>
+                                                <input type="text" id="state" formControlName="state"
+                                                    class="form-control" />
+                                            </div>
+                                            <!-- zipCode -->
+                                            <div class=" mb-2 pe-0 col-4">
+                                                <label for="zip_code" class="form-label">Zipcode<span
+                                                        *ngIf="hasError(i, 'zipCode', 'required')"
+                                                        class="text-danger fw-bold">*</span>
+                                                    :
+                                                </label>
+                                                <input type="text" id="zip_code" formControlName="zipCode"
+                                                    class="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- remove button -->
+                                        <div class="d-flex justify-content-end pe-3 pb-3">
+                                            <button *ngIf="i > 0" type="button" class="btn btn-outline-danger"
+                                                (click)="removeAddress(i)">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- add more -->
+                            <div class="d-flex justify-content-end pe-3 pb-3">
+                                <button class="btn btn-primary" (click)="addAddress()"
+                                    [disabled]="!registrationForm.controls['addresses'].valid">Add
+                                    Another</button>
+                            </div>
                         </div>
 
                         <!-- mobile no -->
@@ -196,6 +272,13 @@
                                 class="text-danger">
                                 Passwords do not match
                             </small>
+                        </div>
+
+                        <!-- profile pic -->
+                        <div class="form-group mb-3">
+                            <label for="profilePicture" class="form-label">Profile Picture : </label>
+                            <input type="file" class="form-control" id="profilePicture" formControlName="profile_pic"
+                                (change)="onFileSelected($event)">
                         </div>
 
                         <div *ngIf="registrationForm.invalid" class="text-center mb-3">

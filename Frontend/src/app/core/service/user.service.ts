@@ -11,7 +11,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  register(userData: IUser): Observable<any> {
+  register(userData: FormData): Observable<any> {
     return this.http.post(`${this.url}/register`, userData, {
       withCredentials: true,
     });
